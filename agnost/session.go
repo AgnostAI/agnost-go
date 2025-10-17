@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"os"
+	"strings"
 	"sync"
 )
 
@@ -82,10 +84,19 @@ func (sm *SessionManager) createSession(sessionInfo *SessionInfo) (string, error
 	}
 
 	// Get user identity if identify function is provided
-	var user *UserIdentity
+	var user UserIdentity
 	if sm.config.Identify != nil {
-		// TODO: Pass actual request and environment when available
-		user = sm.config.Identify(nil, nil)
+		// Get environment variables
+		env := make(map[string]string)
+		for _, e := range os.Environ() {
+			pair := strings.SplitN(e, "=", 2)
+			if len(pair) == 2 {
+				env[pair[0]] = pair[1]
+			}
+		}
+
+		// TODO: Pass actual request when available in HTTP transport
+		user = sm.config.Identify(nil, env)
 	}
 
 	// Generate session ID

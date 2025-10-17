@@ -287,4 +287,3 @@ MIT License - see [LICENSE](../../LICENSE) for details.
 ## Acknowledgments
 
 Built with ❤️ by the Agnost team. Special thanks to [mark3labs](https://github.com/mark3labs) for the excellent mcp-go library.
-# agnost-gosdk

@@ -5,15 +5,12 @@ import (
 	"time"
 )
 
-// UserIdentity represents user identification information
-type UserIdentity struct {
-	UserID string `json:"user_id"`
-	Email  string `json:"email,omitempty"`
-	Role   string `json:"role,omitempty"`
-}
+// UserIdentity represents user identification information as a flexible map
+// The map must contain a "user_id" key at minimum
+type UserIdentity map[string]interface{}
 
 // IdentifyFunc is a function that extracts user identity from request and environment
-type IdentifyFunc func(req *http.Request, env map[string]string) *UserIdentity
+type IdentifyFunc func(req *http.Request, env map[string]string) UserIdentity
 
 // AgnostConfig represents configuration for Agnost Analytics
 type AgnostConfig struct {
@@ -71,12 +68,12 @@ type SessionInfo struct {
 
 // SessionData represents a session in the analytics system
 type SessionData struct {
-	SessionID      string        `json:"session_id"`
-	ClientConfig   string        `json:"client_config"`
-	ConnectionType string        `json:"connection_type"`
-	IP             string        `json:"ip"`
-	Tools          []string      `json:"tools,omitempty"`
-	UserData       *UserIdentity `json:"user_data,omitempty"`
+	SessionID      string       `json:"session_id"`
+	ClientConfig   string       `json:"client_config"`
+	ConnectionType string       `json:"connection_type"`
+	IP             string       `json:"ip"`
+	Tools          []string     `json:"tools,omitempty"`
+	UserData       UserIdentity `json:"user_data,omitempty"`
 }
 
 // SessionResponse represents the response from creating a session
