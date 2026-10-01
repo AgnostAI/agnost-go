@@ -185,11 +185,12 @@ func (a *AgnostAnalytics) TrackMCP(s *server.MCPServer, orgID string, config *Ag
 	// Initialize if not already initialized (must be done before using the adapter)
 	if !a.initialized {
 		a.mu.Unlock() // Unlock before calling Initialize which locks again
-		if err := a.Initialize(s, orgID, config); err != nil {
+		err := a.Initialize(s, orgID, config)
+		a.mu.Lock() // Re-lock before returning or continuing under the deferred unlock
+		if err != nil {
 			Error("Failed to initialize analytics: %v", err)
 			return err
 		}
-		a.mu.Lock() // Re-lock after Initialize
 	}
 
 	// Patch the server to wrap tool handlers
