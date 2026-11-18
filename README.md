@@ -1,15 +1,15 @@
-# Agnost Analytics SDK for Go
+# Agnost AI SDK for Go MCP servers
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/agnostai/agnost-go.svg)](https://pkg.go.dev/github.com/agnostai/agnost-go)
 [![Go Report Card](https://goreportcard.com/badge/github.com/agnostai/agnost-go)](https://goreportcard.com/report/github.com/agnostai/agnost-go)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Track and analyze your [MCP (Model Context Protocol)](https://modelcontextprotocol.io) servers built with [mcp-go](https://github.com/mark3labs/mcp-go) using Agnost Analytics.
+Send tool calls from your [MCP (Model Context Protocol)](https://modelcontextprotocol.io) servers built with [mcp-go](https://github.com/mark3labs/mcp-go) to [Agnost AI](https://agnost.ai), which monitors AI agents in production: chat agents, voice agents, copilots and MCP servers.
 
 ## Features
 
 - 🚀 **Simple API**: Just `Track(server, orgID, config)`
-- 📊 **Comprehensive Analytics**: Track tool usage, latency, and success rates
+- 📊 **Tool call monitoring**: Track tool usage, latency, and success rates
 - 🔒 **Privacy Controls**: Disable input/output tracking as needed
 - ⚡ **High Performance**: Goroutine-based event queuing with minimal overhead
 - 🎯 **Type-Safe**: Full Go type safety with compile-time checks
